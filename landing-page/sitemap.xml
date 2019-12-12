@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+
+<url>
+  <loc>https://www.ehosp.gr/</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/solutions</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/technology</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/about</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/press</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/contact</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/solutions/marketplace</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/solutions/individuals</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.85</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/careers</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/faq</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/privacy-policy</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.ehosp.gr/terms-conditions</loc>
+  <lastmod>2018-08-26T20:52:49+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
+</urlset>
