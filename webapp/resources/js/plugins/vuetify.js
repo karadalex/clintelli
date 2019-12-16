@@ -46,15 +46,14 @@ export default new Vuetify({
     },
 
     theme: {
-        light: false,
         themes: {
             light: {
-                primary: '#F18D0F',
-                secondary: '#b0bec5',
-                accent: '#8c9eff',
-                error: '#b71c1c',
+              primary: '#11C2D3',
+              secondary: '#b0bec5',
+              accent: '#8c9eff',
+              error: '#b71c1c',
             },
-        },
+          },
     },
 })
 

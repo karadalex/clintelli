@@ -6,3 +6,8 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.accent-text, h1, h2 {
+    color: $accent_color;
+}

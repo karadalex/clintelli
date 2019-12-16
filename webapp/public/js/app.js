@@ -239,16 +239,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     source: String
   },
   data: function data() {
     return {
+      dialog: false,
       drawer: null
     };
-  },
-  created: function created() {// 
   }
 });
 
@@ -305,7 +317,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na[data-v-332fccf4]:hover {\r\n  text-decoration: none;\r\n  color: #F18D0F;\n}\r\n", ""]);
+exports.push([module.i, "\na[data-v-332fccf4]:hover {\r\n  text-decoration: none;\r\n  color: #11C2D3;\n}\r\n", ""]);
 
 // exports
 
@@ -1455,7 +1467,7 @@ var render = function() {
       _c(
         "v-navigation-drawer",
         {
-          attrs: { app: "", clipped: "" },
+          attrs: { clipped: _vm.$vuetify.breakpoint.lgAndUp, app: "" },
           model: {
             value: _vm.drawer,
             callback: function($$v) {
@@ -1524,7 +1536,14 @@ var render = function() {
       _vm._v(" "),
       _c(
         "v-app-bar",
-        { attrs: { app: "", "clipped-left": "" } },
+        {
+          attrs: {
+            "clipped-left": _vm.$vuetify.breakpoint.lgAndUp,
+            app: "",
+            color: "primary",
+            dark: ""
+          }
+        },
         [
           _c("v-app-bar-nav-icon", {
             on: {
@@ -1535,7 +1554,26 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_vm._v(" Clintelli ")]),
+          _c(
+            "v-toolbar-title",
+            { staticClass: "ml-0 pl-4", staticStyle: { width: "300px" } },
+            [
+              _c("span", { staticClass: "hidden-sm-and-down" }, [
+                _vm._v(" Clintelli ")
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("v-text-field", {
+            staticClass: "hidden-sm-and-down",
+            attrs: {
+              flat: "",
+              "solo-inverted": "",
+              "hide-details": "",
+              "prepend-inner-icon": "mdi-magnify",
+              label: "Search"
+            }
+          }),
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
@@ -51647,10 +51685,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
     scrollBarWidth: 24
   },
   theme: {
-    light: false,
     themes: {
       light: {
-        primary: '#F18D0F',
+        primary: '#11C2D3',
         secondary: '#b0bec5',
         accent: '#8c9eff',
         error: '#b71c1c'

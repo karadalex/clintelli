@@ -2,8 +2,8 @@
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
       app
-      clipped
     >
       <v-list dense>
         <a href="/home">
@@ -30,19 +30,32 @@
     </v-navigation-drawer>
 
     <v-app-bar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
-      clipped-left
+      color="primary"
+      dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title> Clintelli </v-toolbar-title>
-
-      <v-spacer></v-spacer>
+      <v-toolbar-title
+        style="width: 300px"
+        class="ml-0 pl-4"
+      >
+        <span class="hidden-sm-and-down"> Clintelli </span>
+      </v-toolbar-title>
+      <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        label="Search"
+        class="hidden-sm-and-down"
+      />
+      <v-spacer />
       
       <v-btn icon onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
         <v-icon>exit_to_app</v-icon>
       </v-btn>
     </v-app-bar>
-
     <v-content>
       <v-container fluid fill-height>
         <v-layout>
@@ -58,22 +71,21 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      source: String,
-    },
-    data: () => ({
-      drawer: null,
-    }),
-    created () {
-			// 
-    },
-  }
+export default {
+	props: {
+		source: String,
+	},
+	
+	data: () => ({
+		dialog: false,
+		drawer: null,
+	}),
+}
 </script>
 
 <style scoped>
 a:hover {
   text-decoration: none;
-  color: #F18D0F;
+  color: #11C2D3;
 }
 </style>
