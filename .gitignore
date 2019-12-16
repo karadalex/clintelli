@@ -9,3 +9,4 @@ docker/chronograf
 docker/influxdb
 docker/kapacitor
 .vs
+.directory
