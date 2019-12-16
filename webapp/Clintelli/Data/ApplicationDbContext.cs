@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Clintelli.Models;
 
 namespace Clintelli.Data
 {
@@ -12,5 +13,6 @@ namespace Clintelli.Data
             : base(options)
         {
         }
+        public DbSet<Clintelli.Models.Observation> Observation { get; set; }
     }
 }

@@ -37,7 +37,10 @@
     },
     "Azure Dev Spaces": {
       "commandName": "AzureDevSpaces",
-      "launchBrowser": true
+      "launchBrowser": true,
+      "resourceGroup": "clintelli",
+      "aksName": "clintelli-k8s-demo-cluster",
+      "subscriptionId": "86d871bb-b8a9-45b1-9306-50f391db8d5b"
     }
   }
 }
