@@ -8,8 +8,10 @@
       justify="center"
     >
       <v-col class="text-center" cols="12">
-        <h1 class="display-4"> Clintelli </h1>
-        <h4 class="subheading"> Clinical Intelligence of the future </h4>
+        <h1 class="display-4">
+            <img src="/img/logo.png" alt="">
+        </h1>
+        <h4 class="display-2 font-weight-thin"> Clinical Intelligence of the future </h4>
       </v-col>
     </v-row>
   </v-container>
