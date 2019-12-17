@@ -1,0 +1,83 @@
+version: '2'
+services:
+
+  # The Database
+  mysql:
+    image: mysql:5.6
+    volumes:
+      - dbdata:/var/lib/mysql
+    env_file: '.env'
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+
+  # The Application
+  clintelli_webapp:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - clintelli_webapp_data:/var/www/storage
+    env_file: '.env'
+    depends_on:
+      - mysql
+
+  # The Web Server
+  clintelli_webapp-nginx:
+    build:
+      context: .
+      dockerfile: web.dockerfile
+    # volumes:
+    #   - "${LE_DIR}:/etc/letsencrypt"
+    volumes:
+      - clintelli_webapp_data:/var/www/storage
+    env_file: '.env'
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - clintelli_webapp
+    environment:
+      - "FASTCGI_PASS_GATEWAY_HOST=clintelli_webapp"
+      - "FASTCGI_PASS_GATEWAY_PORT=9000"
+    # Create nginx conf file based on environment variables and then run nginx
+    command: /bin/bash -c "envsubst < /etc/nginx/fastcgi_pass.template.conf > /etc/nginx/fastcgi_pass.conf && exec nginx -g 'daemon off;'"
+    restart: always
+
+  # Keycloak Identity Provider
+  keycloak:
+    image: jboss/keycloak:7.0.0
+    command:
+      [
+        '-b',
+        '0.0.0.0',
+        '-Dkeycloak.migration.action=import',
+        '-Dkeycloak.migration.provider=dir',
+        '-Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config',
+        '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
+        '-Djboss.socket.binding.port-offset=1000',
+      ]
+    volumes:
+      - ./realm-config:/opt/jboss/keycloak/realm-config
+    environment:
+      - KEYCLOAK_USER=${KEYCLOAK_ADMIN_USERNAME}
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
+      - DB_VENDOR=MYSQL
+      - DB_ADDR=mysql
+      - DB_DATABASE=clintelli_keycloak
+      - DB_USER=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 9080:9080
+      - 9443:9443
+      - 10990:10990
+
+
+volumes:
+  dbdata:
+  clintelli_webapp_data:
+  phpmyadmin_data:
+
