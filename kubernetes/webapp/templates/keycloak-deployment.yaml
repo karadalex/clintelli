@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: keycloak
+  name: keycloak
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: keycloak
+    spec:
+      containers:
+      - args:
+        - -b
+        - 0.0.0.0
+        - -Dkeycloak.migration.action=import
+        - -Dkeycloak.migration.provider=dir
+        - -Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config
+        - -Dkeycloak.migration.strategy=OVERWRITE_EXISTING
+        - -Djboss.socket.binding.port-offset=1000
+        env:
+        - name: DB_ADDR
+          value: mysql
+        - name: DB_DATABASE
+          value: clintelli_keycloak
+        - name: DB_PASSWORD
+          value: rootpsswd
+        - name: DB_USER
+          value: root
+        - name: DB_VENDOR
+          value: MYSQL
+        - name: KEYCLOAK_PASSWORD
+        - name: KEYCLOAK_USER
+        image: jboss/keycloak:7.0.0
+        name: keycloak
+        ports:
+        - containerPort: 9080
+        - containerPort: 9443
+        - containerPort: 10990
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/jboss/keycloak/realm-config
+          name: keycloak-claim0
+      restartPolicy: Always
+      volumes:
+      - name: keycloak-claim0
+        persistentVolumeClaim:
+          claimName: keycloak-claim0
+status: {}

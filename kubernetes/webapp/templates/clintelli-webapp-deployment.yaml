@@ -1,0 +1,116 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: clintelli-webapp
+  name: clintelli-webapp
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: clintelli-webapp
+    spec:
+      containers:
+      - env:
+        - name: APP_DEBUG
+          value: "true"
+        - name: APP_ENV
+          value: local
+        - name: APP_KEY
+          value: base64:9FcFCbcKbVHt8f6Tir/tAZrZmS3UcCaRtRLbo9Ezhm4=
+        - name: APP_NAME
+          value: Laravel
+        - name: APP_URL
+          value: http://localhost:8000
+        - name: AWS_ACCESS_KEY_ID
+        - name: AWS_BUCKET
+        - name: AWS_DEFAULT_REGION
+          value: us-east-1
+        - name: AWS_SECRET_ACCESS_KEY
+        - name: BROADCAST_DRIVER
+          value: log
+        - name: CACHE_DRIVER
+          value: file
+        - name: DB_CONNECTION
+          value: mysql
+        - name: DB_DATABASE
+          value: clintelli_webapp
+        - name: DB_HOST
+          value: 127.0.0.1
+        - name: DB_PASSWORD
+          value: rootpsswd
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_USERNAME
+          value: root
+        - name: KEYCLOAK_ADMIN_PASSWORD
+        - name: KEYCLOAK_ADMIN_USERNAME
+        - name: KEYCLOAK_BASEURL
+          value: http://localhost:9080/auth
+        - name: KEYCLOAK_CLIENTID
+          value: account
+        - name: KEYCLOAK_CLIENTSECRET
+          value: 29b57b64-d0e1-42fd-83a2-bd9f40cda1b2
+        - name: KEYCLOAK_ENABLED
+          value: "false"
+        - name: KEYCLOAK_ENCRYPTIONALGORITHM
+        - name: KEYCLOAK_ENCRYPTIONKEY
+        - name: KEYCLOAK_ENCRYPTIONKEYPATH
+        - name: KEYCLOAK_REALM
+          value: clintelli
+        - name: LOG_CHANNEL
+          value: stack
+        - name: MAIL_DRIVER
+          value: smtp
+        - name: MAIL_ENCRYPTION
+          value: "null"
+        - name: MAIL_HOST
+          value: smtp.mailtrap.io
+        - name: MAIL_PASSWORD
+          value: "null"
+        - name: MAIL_PORT
+          value: "2525"
+        - name: MAIL_USERNAME
+          value: "null"
+        - name: MIX_PUSHER_APP_CLUSTER
+          value: '"${PUSHER_APP_CLUSTER}"'
+        - name: MIX_PUSHER_APP_KEY
+          value: '"${PUSHER_APP_KEY}"'
+        - name: PUSHER_APP_CLUSTER
+          value: mt1
+        - name: PUSHER_APP_ID
+        - name: PUSHER_APP_KEY
+        - name: PUSHER_APP_SECRET
+        - name: QUEUE_CONNECTION
+          value: sync
+        - name: REDIS_HOST
+          value: 127.0.0.1
+        - name: REDIS_PASSWORD
+          value: "null"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: SESSION_DRIVER
+          value: cookie
+        - name: SESSION_LIFETIME
+          value: "120"
+        image: clintelli-webapp
+        name: clintelli-webapp
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/www/storage
+          name: clintelli-webapp-data
+        workingDir: /var/www
+      restartPolicy: Always
+      volumes:
+      - name: clintelli-webapp-data
+        persistentVolumeClaim:
+          claimName: clintelli-webapp-data
+status: {}
