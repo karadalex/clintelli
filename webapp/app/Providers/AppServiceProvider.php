@@ -23,6 +23,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Keycloak
+        $this->bootKeycloakSocialite();
     }
+
+    private function bootKeycloakSocialite()
+    {
+        $socialite = $this->app->make('Laravel\Socialite\Contracts\Factory');
+        $socialite->extend(
+            'keycloak',
+            function ($app) use ($socialite) {
+                $config = $app['config']['services.keycloak'];
+                return $socialite->buildProvider(KeycloakProvider::class, $config);
+            }
+        );
+    }
+
 }

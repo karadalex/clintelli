@@ -16,6 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Keycloak routes - To be used in staging or production
+if (env('KEYCLOAK_ENABLED')) {
+    Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
+    Route::get('login/callback', 'Auth\LoginController@handleProviderCallback');
+}
 
 Route::get('/home', 'HomeController@index')->name('home');
 
