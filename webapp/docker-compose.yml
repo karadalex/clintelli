@@ -13,6 +13,17 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+    restart: always
+    ports:
+      - 9090:80
+    volumes:
+      - phpmyadmin_data:/sessions
+
   # The Application
   clintelli_webapp:
     build:
@@ -34,6 +45,8 @@ services:
     #   - "${LE_DIR}:/etc/letsencrypt"
     volumes:
       - clintelli_webapp_data:/var/www/storage
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     env_file: '.env'
     ports:
       - 80:80
@@ -46,6 +59,14 @@ services:
     # Create nginx conf file based on environment variables and then run nginx
     command: /bin/bash -c "envsubst < /etc/nginx/fastcgi_pass.template.conf > /etc/nginx/fastcgi_pass.conf && exec nginx -g 'daemon off;'"
     restart: always
+
+  # Let's Encrypt certbot - SSL renewal
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   # Keycloak Identity Provider
   keycloak:

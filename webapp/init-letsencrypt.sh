@@ -40,7 +40,7 @@ done
 
 
 echo "### Starting nginx ..."
-docker-compose up --force-recreate -d scaffcalc-nginx
+docker-compose up --force-recreate -d clintelli_webapp-nginx
 echo
 
 
@@ -85,4 +85,4 @@ done
 
 echo "### Reloading nginx ..."
 docker-compose up -d
-docker-compose exec scaffcalc-nginx nginx -s reload
+docker-compose exec clintelli_webapp-nginx nginx -s reload
